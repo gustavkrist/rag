@@ -1,5 +1,7 @@
+import itertools
 import json
 import os
+import re
 from typing import TypedDict, cast
 
 import chromadb
@@ -23,11 +25,34 @@ def read_documents_from_folder(path: str) -> list[Document]:
 def read_documents_from_file(filepath: str) -> list[Document]:
     with open(filepath, "r", encoding="UTF-8") as f:
         docs = cast(list[Document], json.load(f))
-    return [doc for doc in docs if doc["content"]]
+    return list(
+        itertools.chain(*[chunk_document(doc) for doc in docs if doc["content"]])
+    )
 
 
 def chunk_document(doc: Document) -> list[Document]:
-    return [doc]
+    """
+    Documents have the form
+
+    == <headline> ==
+    content...
+
+    Chunks documents into one chunk for each section/subsection
+    """
+    pattern = re.compile(r"^===*([^=]+)===*((?:(?:.|\n)(?!==))*)", flags=re.MULTILINE)
+    matches: list[tuple[str, str]] = re.findall(
+        pattern, "== Intro ==\n" + doc["content"]
+    )
+    documents: list[Document] = [
+        {
+            "id": f"{doc['id']}-{subsec.strip()}-{i}",
+            "title": f"{doc['title']} - {subsec.strip()}",
+            "content": f"{doc['title']} - {subsec.strip()}\n{content.strip()}",
+        }
+        for i, (subsec, content) in enumerate(matches)
+        if content.strip()
+    ]
+    return documents
 
 
 def create_document_db(documents: list[Document]) -> None:
@@ -35,12 +60,19 @@ def create_document_db(documents: list[Document]) -> None:
 
     doc_ids = [doc["id"] for doc in documents]
     doc_contents = [doc["content"] for doc in documents]
-    doc_metadata: list[chromadb.Metadata] = [
+    doc_metadatas: list[chromadb.Metadata] = [
         {"title": doc["title"]} for doc in documents
     ]
 
     collection = client.get_or_create_collection("rag")
-    collection.upsert(ids=doc_ids, documents=doc_contents, metadatas=doc_metadata)
+    max_batch_size = 5461
+    for ids, contents, metadatas in zip(
+        *(
+            map(list, itertools.batched(l, max_batch_size))
+            for l in (doc_ids, doc_contents, doc_metadatas)
+        )
+    ):
+        collection.upsert(ids=ids, documents=contents, metadatas=metadatas)
 
 
 def get_document_db() -> chromadb.Collection:
@@ -50,7 +82,7 @@ def get_document_db() -> chromadb.Collection:
 
 
 def get_relevant_documents(
-    query: str, n_results: int = 2, max_distance: float = 1.2
+    query: str, n_results: int = 10, max_distance: float = 1.05
 ) -> list[Document]:
     db = get_document_db()
     result = db.query(query_texts=query, n_results=n_results)

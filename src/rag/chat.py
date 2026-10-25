@@ -40,12 +40,14 @@ class LLM:
 
     def generate_reply(self, query: str, use_rag: bool = True) -> str:
         if use_rag:
-            relevant_documents = documents.get_relevant_documents(query, n_results=3)
+            relevant_documents = documents.get_relevant_documents(
+                query, n_results=20, max_distance=1.05
+            )
             if not relevant_documents:
                 return "I do not know how to respond to your question."
             document_context = "\n\n".join(
                 [
-                    f"Document: {doc['title']}\n{doc['content']}"
+                    f"Document: {doc['content']}"
                     for doc in relevant_documents
                 ]
             )
@@ -62,13 +64,13 @@ class LLM:
             messages,
             tokenize=True,
             add_generation_prompt=True,
-            enable_thinking=False,
+            enable_thinking=True,
             return_tensors="pt",
             return_dict=True,
             truncate=True,
         ).to(self.model.device)
 
-        outputs = self.model.generate(**inputs, max_new_tokens=256)
+        outputs = self.model.generate(**inputs, max_new_tokens=1024)
         reply = self.tokenizer.decode(
             outputs[0][inputs["input_ids"].shape[-1] :], skip_special_tokens=True
         )
