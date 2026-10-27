@@ -45,7 +45,7 @@ class LLM:
         n_documents: int = 20,
         max_distance: float = 1.05,
         enable_thinking: bool = True,
-        max_new_tokens: int = 1024,
+        max_new_tokens: int | None = None,
         temperature: float | None = None,
         top_k: int | None = None,
         top_p: float | None = None,
@@ -81,7 +81,7 @@ class LLM:
 
         # Best practices for thinking/non-thinking by default https://huggingface.co/Qwen/Qwen3-0.6B#best-practices
         generation_config = {
-            "max_new_tokens": max_new_tokens,
+            "max_new_tokens": max_new_tokens or (1024 * 6 if enable_thinking else 1024),
             "temperature": temperature or (0.6 if enable_thinking else 0.7),
             "top_p": top_p or (0.95 if enable_thinking else 0.8),
             "top_k": top_k or 20,
