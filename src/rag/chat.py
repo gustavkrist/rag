@@ -1,11 +1,12 @@
-from typing import cast
+from typing import Literal, TypedDict, cast
 
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
-    PreTrainedModel,
-    TokenizersBackend,
+    BatchEncoding,
+    Qwen2Tokenizer,
 )
+from transformers._typing import GenerativePreTrainedModel
 
 from rag import documents
 
@@ -28,15 +29,59 @@ non_rag_prompt = """You are an expert assistant for the video game Terraria.
 Answer in a helpful way for a gamer."""
 
 
+class Message(TypedDict):
+    role: Literal["user", "system"]
+    content: str
+
+
 class LLM:
-    def __init__(self, model_name: str):
-        self.tokenizer: TokenizersBackend = cast(
-            TokenizersBackend, AutoTokenizer.from_pretrained(model_name)
+    def __init__(self, model_name: str = "Qwen/Qwen3-0.6B") -> None:
+        self.tokenizer: Qwen2Tokenizer = cast(
+            Qwen2Tokenizer, AutoTokenizer.from_pretrained(model_name)
         )
-        self.model: PreTrainedModel = cast(
-            PreTrainedModel,
+        self.model: GenerativePreTrainedModel = cast(
+            GenerativePreTrainedModel,
             AutoModelForCausalLM.from_pretrained(model_name, device_map="auto"),
         )
+
+    def _generate_reply(
+        self,
+        messages: list[Message],
+        enable_thinking: bool = True,
+        **kwargs: float
+    ) -> str:
+        inputs = self.tokenizer.apply_chat_template(
+            cast(list[dict[str, str]], messages),
+            tokenize=True,
+            add_generation_prompt=True,
+            enable_thinking=enable_thinking,
+            return_tensors="pt",
+            return_dict=True,
+            truncate=True,
+        )
+        assert isinstance(inputs, BatchEncoding)
+        inputs = inputs.to(self.model.device)
+
+        # Best practices for thinking/non-thinking by default https://huggingface.co/Qwen/Qwen3-0.6B#best-practices
+        generation_config = {
+            "max_new_tokens": kwargs.get(
+                "max_new_tokens", 1024
+            ),
+            "temperature": kwargs.get(
+                "temperature", (0.6 if enable_thinking else 0.7)
+            ),
+            "top_p": kwargs.get("top_p", (0.95 if enable_thinking else 0.8)),
+            "top_k": kwargs.get("top_k", 20),
+            "min_p": kwargs.get("min_p", 0.0),
+        }
+
+        outputs = self.model.generate(**inputs, **generation_config)
+        reply = self.tokenizer.decode(
+            outputs[0][inputs["input_ids"].shape[-1] :], skip_special_tokens=True
+        )
+        assert isinstance(reply, str)
+
+        return reply
 
     def generate_reply(
         self,
@@ -45,11 +90,7 @@ class LLM:
         n_documents: int = 20,
         max_distance: float = 1.05,
         enable_thinking: bool = True,
-        max_new_tokens: int | None = None,
-        temperature: float | None = None,
-        top_k: int | None = None,
-        top_p: float | None = None,
-        min_p: float | None = None,
+        **generation_kwargs: float,
     ) -> str:
         if use_rag:
             relevant_documents = documents.get_relevant_documents(
@@ -64,32 +105,9 @@ class LLM:
         else:
             model_context = non_rag_prompt
 
-        messages = [
+        messages: list[Message] = [
             {"role": "system", "content": model_context},
             {"role": "user", "content": query},
         ]
 
-        inputs = self.tokenizer.apply_chat_template(
-            messages,
-            tokenize=True,
-            add_generation_prompt=True,
-            enable_thinking=enable_thinking,
-            return_tensors="pt",
-            return_dict=True,
-            truncate=True,
-        ).to(self.model.device)
-
-        # Best practices for thinking/non-thinking by default https://huggingface.co/Qwen/Qwen3-0.6B#best-practices
-        generation_config = {
-            "max_new_tokens": max_new_tokens or (1024 * 6 if enable_thinking else 1024),
-            "temperature": temperature or (0.6 if enable_thinking else 0.7),
-            "top_p": top_p or (0.95 if enable_thinking else 0.8),
-            "top_k": top_k or 20,
-            "min_p": min_p or 0,
-        }
-        outputs = self.model.generate(**inputs, **generation_config)
-        reply = self.tokenizer.decode(
-            outputs[0][inputs["input_ids"].shape[-1] :], skip_special_tokens=True
-        )
-
-        return reply
+        return self._generate_reply(messages, enable_thinking, **generation_kwargs)
