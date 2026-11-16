@@ -1,4 +1,4 @@
-from typing import Literal, TypedDict, cast
+from typing import cast
 
 from transformers import (
     AutoModelForCausalLM,
@@ -8,7 +8,8 @@ from transformers import (
 )
 from transformers._typing import GenerativePreTrainedModel
 
-from rag import documents
+from rag.documents import DocumentStore
+from rag.types import Document, Message
 
 rag_prompt = """You are an expert assistant for the video game Terraria.
 
@@ -29,13 +30,8 @@ non_rag_prompt = """You are an expert assistant for the video game Terraria.
 Answer in a helpful way for a gamer."""
 
 
-class Message(TypedDict):
-    role: Literal["user", "system"]
-    content: str
-
-
-class LLM:
-    def __init__(self, model_name: str = "Qwen/Qwen3-0.6B") -> None:
+class RagLLM:
+    def __init__(self, db: DocumentStore, model_name: str = "Qwen/Qwen3-0.6B") -> None:
         self.tokenizer: Qwen2Tokenizer = cast(
             Qwen2Tokenizer, AutoTokenizer.from_pretrained(model_name)
         )
@@ -43,12 +39,10 @@ class LLM:
             GenerativePreTrainedModel,
             AutoModelForCausalLM.from_pretrained(model_name, device_map="auto"),
         )
+        self.documents = db
 
     def _generate_reply(
-        self,
-        messages: list[Message],
-        enable_thinking: bool = True,
-        **kwargs: float
+        self, messages: list[Message], enable_thinking: bool = True, **kwargs: float
     ) -> str:
         inputs = self.tokenizer.apply_chat_template(
             cast(list[dict[str, str]], messages),
@@ -64,12 +58,8 @@ class LLM:
 
         # Best practices for thinking/non-thinking by default https://huggingface.co/Qwen/Qwen3-0.6B#best-practices
         generation_config = {
-            "max_new_tokens": kwargs.get(
-                "max_new_tokens", 1024
-            ),
-            "temperature": kwargs.get(
-                "temperature", (0.6 if enable_thinking else 0.7)
-            ),
+            "max_new_tokens": kwargs.get("max_new_tokens", 1024),
+            "temperature": kwargs.get("temperature", (0.6 if enable_thinking else 0.7)),
             "top_p": kwargs.get("top_p", (0.95 if enable_thinking else 0.8)),
             "top_k": kwargs.get("top_k", 20),
             "min_p": kwargs.get("min_p", 0.0),
@@ -87,19 +77,30 @@ class LLM:
         self,
         query: str,
         use_rag: bool = True,
-        n_documents: int = 20,
-        max_distance: float = 1.05,
+        rerank: bool = True,
+        n_results: int = 15,
+        n_documents: int = 5,
+        max_distance: float = 2,
         enable_thinking: bool = True,
         **generation_kwargs: float,
-    ) -> str:
+    ) -> tuple[str, list[Document]]:
+        documents = []
         if use_rag:
-            relevant_documents = documents.get_relevant_documents(
-                query, n_results=n_documents, max_distance=max_distance
-            )
-            if not relevant_documents:
-                return "I do not know how to respond to your question."
+            if rerank:
+                documents = self.documents.get_relevant_documents(
+                    query,
+                    n_results=n_results,
+                    top_k=n_documents,
+                    max_distance=max_distance,
+                )
+            else:
+                documents = self.documents.retrieve_documents(
+                    query, n_results=n_documents, max_distance=max_distance
+                )
+            if not documents:
+                return "I do not know how to respond to your question.", []
             document_context = "\n\n".join(
-                [f"Document: {doc['content']}" for doc in relevant_documents]
+                [f"Document: {doc['content']}" for doc in documents]
             )
             model_context = rag_prompt.format(context=document_context)
         else:
@@ -110,4 +111,9 @@ class LLM:
             {"role": "user", "content": query},
         ]
 
-        return self._generate_reply(messages, enable_thinking, **generation_kwargs)
+        reply = self._generate_reply(messages, enable_thinking, **generation_kwargs)
+
+        if enable_thinking:
+            reply = reply[reply.find("</think>") + len("</think>") :].strip()
+
+        return reply, documents
