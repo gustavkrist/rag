@@ -165,6 +165,7 @@ def chunk_document(doc: Document) -> list[Document]:
             "References",
             "Shimmered form",
             "Achievements",
+            "See also",
         } or subsec_title.startswith("Bestiary entries"):
             continue
         url = f"{doc['url']}#{subsec_title.replace(' ', '_')}"

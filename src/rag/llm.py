@@ -1,5 +1,6 @@
-from typing import cast
+from typing import Literal, TypedDict, Unpack, cast, overload
 
+from torch.fft import Tensor
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
@@ -20,7 +21,7 @@ Rules:
 1. Use only the retrieved documents as your source of truth.
 2. If the answer is not explicitly found in the documents, say: "The retrieved documents do not provide enough information."
 3. Do not infer, guess, or answer from general knowledge.
-4. Do not make up items, bosses, NPCs, or crafting recipies that are not stated in the documents
+4. Do not make up items, bosses, NPCs, biomes, or anything else that is not stated in the documents
 5. Give a clear explanation in 3 to 5 sentences only when the answer is supported by the retrieved documents.
 
 Retrieved documents:
@@ -28,6 +29,14 @@ Retrieved documents:
 
 non_rag_prompt = """You are an expert assistant for the video game Terraria.
 Answer in a helpful way for a gamer."""
+
+
+class GenerationKwargs(TypedDict, total=False):
+    max_new_tokens: int
+    temperature: float
+    top_p: float
+    top_k: int
+    min_p: float
 
 
 class RagLLM:
@@ -41,9 +50,44 @@ class RagLLM:
         )
         self.documents = db
 
+    @overload
     def _generate_reply(
-        self, messages: list[Message], enable_thinking: bool = True, **kwargs: float
-    ) -> str:
+        self,
+        messages: list[Message],
+        enable_thinking: bool = True,
+        *,
+        return_inputs: Literal[False] = False,
+        **kwargs: Unpack[GenerationKwargs],
+    ) -> str: ...
+
+    @overload
+    def _generate_reply(
+        self,
+        messages: list[Message],
+        enable_thinking: bool = True,
+        *,
+        return_inputs: Literal[True],
+        **kwargs: Unpack[GenerationKwargs],
+    ) -> tuple[str, BatchEncoding[Tensor]]: ...
+
+    @overload
+    def _generate_reply(
+        self,
+        messages: list[Message],
+        enable_thinking: bool = True,
+        *,
+        return_inputs: bool,
+        **kwargs: Unpack[GenerationKwargs],
+    ) -> str | tuple[str, BatchEncoding[Tensor]]: ...
+
+    def _generate_reply(
+        self,
+        messages: list[Message],
+        enable_thinking: bool = True,
+        *,
+        return_inputs: bool = False,
+        **kwargs: Unpack[GenerationKwargs],
+    ) -> str | tuple[str, BatchEncoding[Tensor]]:
         inputs = self.tokenizer.apply_chat_template(
             cast(list[dict[str, str]], messages),
             tokenize=True,
@@ -71,9 +115,12 @@ class RagLLM:
         )
         assert isinstance(reply, str)
 
-        return reply
+        if return_inputs:
+            return reply, inputs
+        else:
+            return reply
 
-    def generate_reply(
+    def _get_context(
         self,
         query: str,
         use_rag: bool = True,
@@ -81,9 +128,7 @@ class RagLLM:
         n_results: int = 15,
         n_documents: int = 5,
         max_distance: float = 2,
-        enable_thinking: bool = True,
-        **generation_kwargs: float,
-    ) -> tuple[str, list[Document]]:
+    ) -> tuple[list[Message], list[Document]]:
         documents = []
         if use_rag:
             if rerank:
@@ -98,7 +143,7 @@ class RagLLM:
                     query, n_results=n_documents, max_distance=max_distance
                 )
             if not documents:
-                return "I do not know how to respond to your question.", []
+                return [], []
             document_context = "\n\n".join(
                 [f"Document: {doc['content']}" for doc in documents]
             )
@@ -110,6 +155,29 @@ class RagLLM:
             {"role": "system", "content": model_context},
             {"role": "user", "content": query},
         ]
+        return messages, documents
+
+    def generate_reply(
+        self,
+        query: str,
+        use_rag: bool = True,
+        rerank: bool = True,
+        n_results: int = 15,
+        n_documents: int = 5,
+        max_distance: float = 2,
+        enable_thinking: bool = True,
+        **generation_kwargs: Unpack[GenerationKwargs],
+    ) -> tuple[str, list[Document]]:
+        messages, documents = self._get_context(
+            query=query,
+            use_rag=use_rag,
+            rerank=rerank,
+            n_results=n_results,
+            n_documents=n_documents,
+            max_distance=max_distance,
+        )
+        if not messages:
+            return "I do not know how to respond to your question.", []
 
         reply = self._generate_reply(messages, enable_thinking, **generation_kwargs)
 
