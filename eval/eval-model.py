@@ -43,11 +43,11 @@ def judge_response(response_tuple: tuple[str, str, str]) -> JudgeResponse | None
     query, context, reply = response_tuple
     prompt = JUDGE_PROMPT.format(query=query, context=context, reply=reply)
     client = openai.Client(
-        api_key=os.environ["NEURALWATT_API_KEY"],
-        base_url="https://api.neuralwatt.com/v1",
+        api_key=os.environ["OPENAI_API_KEY"],
+        base_url=os.environ["OPENAI_BASE_URL"],
     )
     response = client.responses.parse(
-        model="deepseek-v4.1-flash", input=prompt, text_format=JudgeResponse
+        model=os.environ["OPENAI_MODEL"], input=prompt, text_format=JudgeResponse
     )
     return response.output_parsed
 
