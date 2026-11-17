@@ -5,7 +5,7 @@
 > [!note]
 > It is assumed that all commands are run from the repository root unless stated otherwise
 
-- Install `uv`
+- Install [`uv`](https://docs.astral.sh/uv/)
 - Run `uv sync`
 - Activate the venv - `source .venv/bin/activate` on Linux/MacOS
 - Run the data fetch script - `python3 fetch_data.py`
@@ -22,7 +22,7 @@
 ## Running evaluation
 
 - For the model-assisted evaluation, set the following environment variables `OPENAI_API_KEY`, `OPENAI_BASE_URL`, and `OPENAI_MODEL` to the api key, base url, and model name for an OpenAI-compatible provider
-- Run `eval.sh` to run all the evaluation
+- Run [`eval.sh`](./eval.sh) to run all the evaluation
   - One of the evaluation scripts is for human evaluation
     - This script will print a model reply to the terminal and ask for a 1-5 correctness score
     - If you want to quit this early, type `q`/`quit`/`exit` and the rest of the queries will receive NaN as their score
@@ -31,13 +31,13 @@
 ### Evaluation results
 
 - The outputs of the evaluation scripts are:
-  - `./eval/sample-generations-qwen3-1.7B.csv`
-    - Contains user query, provided context, and generated reply from the RAG model for each sample question in `./eval/sample-questions.txt`
-  - `./eval/sample-generations-no-rag-qwen3-1.7B.csv`
-    - Contains user query, provided context, and generated reply for the base model without RAG for each sample question in `./eval/sample-questions.txt`
-  - `./eval/human-evaluation-qwen3-1.7B.csv`
+  - [`./eval/sample-generations-qwen3-1.7B.csv`](./eval/sample-generations-qwen3-1.7B.csv)
+    - Contains user query, provided context, and generated reply from the RAG model for each sample question in [`./eval/sample-questions.txt`](./eval/sample-questions.txt)
+  - [`./eval/sample-generations-no-rag-qwen3-1.7B.csv`](./eval/sample-generations-no-rag-qwen3-1.7B.csv)
+    - Contains user query, provided context, and generated reply for the base model without RAG for each sample question in [`./eval/sample-questions.txt`](./eval/sample-questions.txt)
+  - [`./eval/human-evaluation-qwen3-1.7B.csv`](./eval/human-evaluation-qwen3-1.7B.csv)
     - Contains query, context, reply, and correctness scores for the RAG model for each sample question
-  - `./eval/judge-evaluation-qwen3-1.7B.csv`
+  - [`./eval/judge-evaluation-qwen3-1.7B.csv`](./eval/judge-evaluation-qwen3-1.7B.csv)
     - Contains query, context, reply, and:
       - Fluency score
       - Fluency justification
@@ -47,6 +47,7 @@
       - Citation recall justification
       - Citation precision score
       - Citation precision justification
+
       for the RAG model for each sample question from the LLM judge
-  - `./eval/eval-statistics-table-qwen3-1.7B.tex`
+  - [`./eval/eval-statistics-table-qwen3-1.7B.tex`](./eval/eval-statistics-table-qwen3-1.7B.tex)
     - Contains a table in LaTeX format with summary statistics for the human and model-assisted scores
