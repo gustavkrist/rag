@@ -130,7 +130,6 @@ dmypy.json
 
 # Datasets
 data/
-*.csv
 
 # Compressed files
 *.7z
