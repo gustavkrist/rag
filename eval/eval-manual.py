@@ -1,0 +1,56 @@
+import math
+import os
+
+import pandas as pd
+from rich.console import Console
+from rich.markdown import Markdown
+
+FILE_DIR = os.path.dirname(__file__)
+
+
+def main() -> None:
+    samples = pd.read_csv(os.path.join(FILE_DIR, "sample-generations.csv"))
+    correctness_scores = []
+    done = False
+    for reply in samples["reply"]:
+        if done:
+            break
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print("\033[H\033[2J", end="", flush=True)
+        Console().print(Markdown(f"---\n\n# Reply\n\n{reply}"))
+        print()
+        low = 1
+        high = 5
+        score = math.nan
+        while True:
+            try:
+                inp = input("Correctness Score: ")
+            except EOFError:
+                done = True
+                break
+            if inp in {"q", "quit", "exit"}:
+                done = True
+                break
+            if inp in {"na", "nan", "NA"}:
+                score = math.nan
+                break
+            try:
+                score = int(inp)
+            except ValueError:
+                print("Input is not a valid integer, please try again.")
+                continue
+            assert isinstance(score, int)
+            if score < low or high < score:
+                print(f"Score must be between {low} and {high} (inclusive)")
+                continue
+            break
+        correctness_scores.append(score)
+    while len(correctness_scores) < len(samples):
+        correctness_scores.append(math.nan)
+    df = samples.copy()
+    df["correctness_score"] = correctness_scores
+    df.to_csv(os.path.join(FILE_DIR, "human-evaluation.csv"), index=False)
+
+
+if __name__ == "__main__":
+    main()

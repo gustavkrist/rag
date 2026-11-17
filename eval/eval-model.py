@@ -7,6 +7,8 @@ import pandas as pd
 from pydantic import BaseModel, Field
 from tqdm.contrib.concurrent import thread_map
 
+FILE_DIR = os.path.dirname(__file__)
+
 # Inspired by https://github.com/trevorandersen/CP5403-pracs/blob/414dfbd74c86550b5292b967ca17d3086490ddcb/week08/cp5403-prac-08.ipynb
 JUDGE_PROMPT = """You are evaluating a question-answering system.
 
@@ -52,7 +54,7 @@ def judge_response(response_tuple: tuple[str, str, str]) -> JudgeResponse | None
 
 def main() -> None:
     samples = pd.read_csv(
-        os.path.join(os.path.dirname(__file__), "sample-generations.csv")
+        os.path.join(FILE_DIR, "sample-generations.csv")
     )
     pillars = ["fluency", "perceived_utility", "citation_recall", "citation_precision"]
     judge_scores = {p: [] for p in pillars}
@@ -67,10 +69,10 @@ def main() -> None:
             judge_justifications[p].append(getattr(j, f"{p}_justification", ""))
     df = samples.copy()
     for p in pillars:
-        df[f"judge_{p}_score"] = judge_scores[p]
-        df[f"judge_{p}_justification"] = judge_justifications[p]
+        df[f"{p}_score"] = judge_scores[p]
+        df[f"{p}_justification"] = judge_justifications[p]
     df.to_csv(
-        os.path.join(os.path.dirname(__file__), "judge-evaluation.csv"), index=False
+        os.path.join(FILE_DIR, "judge-evaluation.csv"), index=False
     )
 
 
