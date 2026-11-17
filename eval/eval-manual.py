@@ -9,7 +9,8 @@ FILE_DIR = os.path.dirname(__file__)
 
 
 def main() -> None:
-    samples = pd.read_csv(os.path.join(FILE_DIR, "sample-generations.csv"))
+    model = "qwen3-1.7B"
+    samples = pd.read_csv(os.path.join(FILE_DIR, f"sample-generations-{model}.csv"))
     correctness_scores = []
     done = False
     for reply in samples["reply"]:
@@ -49,7 +50,7 @@ def main() -> None:
         correctness_scores.append(math.nan)
     df = samples.copy()
     df["correctness_score"] = correctness_scores
-    df.to_csv(os.path.join(FILE_DIR, "human-evaluation.csv"), index=False)
+    df.to_csv(os.path.join(FILE_DIR, f"human-evaluation-{model}.csv"), index=False)
 
 
 if __name__ == "__main__":

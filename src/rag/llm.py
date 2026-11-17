@@ -12,7 +12,7 @@ from transformers._typing import GenerativePreTrainedModel
 from rag.documents import DocumentStore
 from rag.types import Document, Message
 
-# Inspired from https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-prompt-engineering#naive-rag
+# Inspired from https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-prompt-engineering
 rag_prompt = """\
 ## Role
 You are an assistant with expert knowledge for the video game Terraria.

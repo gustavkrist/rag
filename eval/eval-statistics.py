@@ -9,6 +9,7 @@ FILE_DIR = os.path.dirname(__file__)
 
 
 def main() -> None:
+    model = "qwen3-1.7B"
     pillars = [
         "correctness",
         "fluency",
@@ -16,8 +17,8 @@ def main() -> None:
         "citation_recall",
         "citation_precision",
     ]
-    judge_df = pd.read_csv(os.path.join(FILE_DIR, "judge-evaluation.csv"))
-    human_df = pd.read_csv(os.path.join(FILE_DIR, "human-evaluation.csv"))
+    judge_df = pd.read_csv(os.path.join(FILE_DIR, f"judge-evaluation-{model}.csv"))
+    human_df = pd.read_csv(os.path.join(FILE_DIR, f"human-evaluation-{model}.csv"))
     judge_df["correctness_score"] = human_df["correctness_score"]
 
     cols = {p.replace("_", " ").title(): judge_df[f"{p}_score"] for p in pillars}
@@ -25,7 +26,7 @@ def main() -> None:
     summary_statistics = [
         [title]
         + [
-            x.round(2)
+            round(x, 2)
             for x in (
                 col.mean(),
                 col.median(),
@@ -40,7 +41,7 @@ def main() -> None:
     ]
     table = tabulate(summary_statistics, headers=headers, tablefmt="github")
     Console().print(Markdown(table))
-    with open(os.path.join(FILE_DIR, "eval-statistics-table.tex"), "w") as f:
+    with open(os.path.join(FILE_DIR, f"eval-statistics-table-{model}.tex"), "w") as f:
         f.write(tabulate(summary_statistics, headers=headers, tablefmt="latex"))
 
 

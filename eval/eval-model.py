@@ -53,8 +53,9 @@ def judge_response(response_tuple: tuple[str, str, str]) -> JudgeResponse | None
 
 
 def main() -> None:
+    model = "qwen3-1.7B"
     samples = pd.read_csv(
-        os.path.join(FILE_DIR, "sample-generations.csv")
+        os.path.join(FILE_DIR, f"sample-generations-{model}.csv")
     )
     pillars = ["fluency", "perceived_utility", "citation_recall", "citation_precision"]
     judge_scores = {p: [] for p in pillars}
@@ -72,7 +73,7 @@ def main() -> None:
         df[f"{p}_score"] = judge_scores[p]
         df[f"{p}_justification"] = judge_justifications[p]
     df.to_csv(
-        os.path.join(FILE_DIR, "judge-evaluation.csv"), index=False
+        os.path.join(FILE_DIR, f"judge-evaluation-{model}.csv"), index=False
     )
 
 
