@@ -160,19 +160,23 @@ def chunk_document(doc: Document) -> list[Document]:
     documents: list[Document] = []
     for subsec, content in matches:
         subsec_title = subsec.strip()
-        if subsec_title in {
-            "History",
-            "References",
-            "Shimmered form",
-            "Achievements",
-            "See also",
-        } or subsec_title.startswith("Bestiary entries"):
+        if (
+            subsec_title
+            in {
+                "History",
+                "References",
+                "Shimmered form",
+                "Achievements",
+                "See also",
+            }
+            or subsec_title.startswith("Bestiary entries")
+            or (not content.strip())
+        ):
             continue
         url = f"{doc['url']}#{subsec_title.replace(' ', '_')}"
         if counts[subsec_title] > 0:
             url += "_" + str(counts[subsec_title] + 1)
 
-        # TODO: Chunk longer contents perhaps
         documents.append(
             {
                 "id": f"{doc['id']}-{subsec_title}-{counts[subsec_title]}",

@@ -25,7 +25,9 @@ def main() -> None:
         messages, _documents = llm._get_context(query)
         if messages:
             reply, inputs = llm._generate_reply(messages, return_inputs=True)
-            context = llm.tokenizer.decode(inputs["input_ids"], skip_special_tokens=True)
+            context = llm.tokenizer.decode(
+                inputs["input_ids"], skip_special_tokens=True
+            )
             reply = reply[reply.find("</think>") + len("</think>") :].strip()
         else:
             reply = "I do not know how to respond to your question."

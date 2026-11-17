@@ -58,7 +58,9 @@ def main() -> None:
     judge_scores = {p: [] for p in pillars}
     judge_justifications = {p: [] for p in pillars}
     rows = [(q, c, r) for _, (q, c, r) in samples.iterrows()]
-    judgings: list[JudgeResponse | None] = thread_map(judge_response, rows, max_workers=3)
+    judgings: list[JudgeResponse | None] = thread_map(
+        judge_response, rows, max_workers=3
+    )
     for j in judgings:
         for p in pillars:
             judge_scores[p].append(getattr(j, f"{p}_score", math.nan))
