@@ -17,7 +17,10 @@ class App:
 
     def _response(self, message: str, _history: list[Message]) -> str:
         reply, used_documents = self.llm.generate_reply(message)
-        doc_entries = [f"[{d['title']}]({d['url']})" for d in used_documents]
+        doc_entries = [
+            f"[Source {i}]: [{d['title']}]({d['url']})"
+            for i, d in enumerate(used_documents, start=1)
+        ]
         articles_text = textwrap.dedent(f"""\
 
 

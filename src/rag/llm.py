@@ -12,23 +12,35 @@ from transformers._typing import GenerativePreTrainedModel
 from rag.documents import DocumentStore
 from rag.types import Document, Message
 
-rag_prompt = """You are an expert assistant for the video game Terraria.
+# Inspired from https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-prompt-engineering#naive-rag
+rag_prompt = """\
+## Role
+You are an assistant with expert knowledge for the video game Terraria.
 
-Answer the user's question using only the retrieved assessment documents below.
-Answer in a helpful way for a gamer.
+## Instructions
+- Answer the question by using only the information in the context below.
+- If the context does not contain enough information to fully answer the question, state what you can answer and explicitely note what information is missing.
+- Cite the source for each claim by using the format [Source N].
+- Don't speculate or include information that isn't in the provided context.
+- If none of the provided context is relevant to the question, respond with: "I don't have enough information in the available documents to answer this question."
+- If the provided sources contain conflicting information, present both perspectives and cite the respective sources. Don't silently favor one source over another.
 
-Rules:
-1. Use only the retrieved documents as your source of truth.
-2. If the answer is not explicitly found in the documents, say: "The retrieved documents do not provide enough information."
-3. Do not infer, guess, or answer from general knowledge.
-4. Do not make up items, bosses, NPCs, biomes, or anything else that is not stated in the documents
-5. Give a clear explanation in 3 to 5 sentences only when the answer is supported by the retrieved documents.
+## Context
+{context}
 
-Retrieved documents:
-{context}"""
+## Question
+{user_query}"""
 
-non_rag_prompt = """You are an expert assistant for the video game Terraria.
-Answer in a helpful way for a gamer."""
+non_rag_prompt = """\
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+{user_query}"""
 
 
 class GenerationKwargs(TypedDict, total=False):
@@ -40,7 +52,7 @@ class GenerationKwargs(TypedDict, total=False):
 
 
 class RagLLM:
-    def __init__(self, db: DocumentStore, model_name: str = "Qwen/Qwen3-0.6B") -> None:
+    def __init__(self, db: DocumentStore, model_name: str = "Qwen/Qwen3-1.7B") -> None:
         self.tokenizer: Qwen2Tokenizer = cast(
             Qwen2Tokenizer, AutoTokenizer.from_pretrained(model_name)
         )
@@ -102,7 +114,7 @@ class RagLLM:
 
         # Best practices for thinking/non-thinking by default https://huggingface.co/Qwen/Qwen3-0.6B#best-practices
         generation_config = {
-            "max_new_tokens": kwargs.get("max_new_tokens", 1024),
+            "max_new_tokens": kwargs.get("max_new_tokens", 32_768),
             "temperature": kwargs.get("temperature", (0.6 if enable_thinking else 0.7)),
             "top_p": kwargs.get("top_p", (0.95 if enable_thinking else 0.8)),
             "top_k": kwargs.get("top_k", 20),
@@ -144,16 +156,20 @@ class RagLLM:
                 )
             if not documents:
                 return [], []
-            document_context = "\n\n".join(
-                [f"Document: {doc['content']}" for doc in documents]
+            document_context = "\n\n---\n\n".join(
+                [
+                    f"[Source {i}]: {doc['content']}"
+                    for i, doc in enumerate(documents, start=1)
+                ]
             )
-            model_context = rag_prompt.format(context=document_context)
+            model_context = rag_prompt.format(
+                context=document_context, user_query=query
+            )
         else:
-            model_context = non_rag_prompt
+            model_context = non_rag_prompt.format(user_query=query)
 
         messages: list[Message] = [
             {"role": "system", "content": model_context},
-            {"role": "user", "content": query},
         ]
         return messages, documents
 
