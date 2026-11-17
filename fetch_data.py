@@ -35,12 +35,13 @@ for cat_name in categories:
 pages = set(pages)
 
 desktop_cat = pywikibot.Category(site, "Desktop content")
+guide_cat = pywikibot.Category(site, "Guides")
 
 articles = []
 for page in tqdm(pages):
     if not (page.is_categorypage() or page.isDisambig() or page.isRedirectPage()):
         categories = list(page.categories())
-        if desktop_cat in categories:
+        if desktop_cat in categories or guide_cat in categories:
             articles.append(
                 {
                     "id": str(page.pageid),
