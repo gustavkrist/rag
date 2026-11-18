@@ -148,4 +148,4 @@ data/
 
 apicache/
 .chroma/
-!report/data/
+throttle.ctrl

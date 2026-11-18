@@ -8,8 +8,10 @@
   logo: image("images/logo.png", width: 2cm),
   language: "en",
   compact-mode: false,
-  it
+  it,
 )
+
+#show table.cell.where(y: 0): strong
 
 = Introduction
 
@@ -21,8 +23,18 @@
 
 = Evaluation
 
+#figure(
+  include("tables/eval-stats.typ"),
+  caption: "Evaluation Results",
+) <eval-stats>
+
 = Discussion
 
 = Conclusion
 
-#bibliography("bibliography.bib", style: "american-psychological-association", full: true)
+#bibliography(
+  "bibliography.bib",
+  style: "american-psychological-association",
+  full: true,
+  title: "References",
+)
