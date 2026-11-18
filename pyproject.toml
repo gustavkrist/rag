@@ -17,7 +17,6 @@ dependencies = [
     "pydantic>=2.14.1",
     "pywikibot>=11.9.0",
     "sentence-transformers>=6.2.0",
-    "tabulate>=0.10.0",
     "tqdm>=4.70.1",
     "transformers>=5.20.2",
 ]

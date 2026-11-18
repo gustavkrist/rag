@@ -49,5 +49,5 @@
       - Citation precision justification
 
       for the RAG model for each sample question from the LLM judge
-  - [`./eval/eval-statistics-table-qwen3-1.7B.tex`](./eval/eval-statistics-table-qwen3-1.7B.tex)
-    - Contains a table in LaTeX format with summary statistics for the human and model-assisted scores
+  - [`./eval/eval-statistics-table-qwen3-1.7B.csv`](./eval/eval-statistics-table-qwen3-1.7B.csv)
+    - Contains summary statistics for the human and model-assisted scores

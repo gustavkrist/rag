@@ -1,9 +1,6 @@
 import os
 
 import pandas as pd
-from rich.console import Console
-from rich.markdown import Markdown
-from tabulate import tabulate
 
 FILE_DIR = os.path.dirname(__file__)
 
@@ -22,27 +19,30 @@ def main() -> None:
     judge_df["correctness_score"] = human_df["correctness_score"]
 
     cols = {p.replace("_", " ").title(): judge_df[f"{p}_score"] for p in pillars}
-    headers = ["Mean", "Median", "Min", "25%", "50%", "75%", "max"]
-    summary_statistics = [
-        [title]
-        + [
-            round(x, 2)
-            for x in (
-                col.mean(),
-                col.median(),
-                col.min(),
-                col.quantile(0.25),
-                col.quantile(0.50),
-                col.quantile(0.75),
-                col.max(),
-            )
-        ]
-        for title, col in cols.items()
-    ]
-    table = tabulate(summary_statistics, headers=headers, tablefmt="github")
-    Console().print(Markdown(table))
-    with open(os.path.join(FILE_DIR, f"eval-statistics-table-{model}.tex"), "w") as f:
-        f.write(tabulate(summary_statistics, headers=headers, tablefmt="latex"))
+    statistics = {
+        "Score": [],
+        "Mean": [],
+        "Median": [],
+        "Min": [],
+        "25%": [],
+        "50%": [],
+        "75%": [],
+        "Max": [],
+    }
+    for title, col in cols.items():
+        statistics["Score"].append(title)
+        statistics["Mean"].append(round(col.mean(), 2))
+        statistics["Median"].append(col.median())
+        statistics["Min"].append(col.min())
+        statistics["25%"].append(round(col.quantile(0.25), 2))
+        statistics["50%"].append(round(col.quantile(0.50), 2))
+        statistics["75%"].append(round(col.quantile(0.75), 2))
+        statistics["Max"].append(col.max())
+
+    pd.DataFrame(statistics).to_csv(
+        os.path.join(FILE_DIR, f"eval-statistics-table-{model}.csv"),
+        index=False,
+    )
 
 
 if __name__ == "__main__":

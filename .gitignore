@@ -148,3 +148,4 @@ data/
 
 apicache/
 .chroma/
+!report/data/
