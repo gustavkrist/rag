@@ -1,0 +1,1 @@
+- Source for embedding model used https://docs.trychroma.com/docs/embeddings/embedding-functions#default-all-minilm-l6-v2
