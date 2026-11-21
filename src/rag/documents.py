@@ -150,6 +150,9 @@ def chunk_document(doc: Document) -> list[Document]:
     == <headline> ==
     content...
 
+    === <sub-headline> ===
+    content...
+
     Chunks documents into one chunk for each section/subsection
     """
     pattern = re.compile(r"^===?([^=]+)===?((?:(?:.|\n)(?!==))*)", flags=re.MULTILINE)
