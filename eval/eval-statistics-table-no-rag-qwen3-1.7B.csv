@@ -1,0 +1,7 @@
+Score,Mean,Median,Min,25%,50%,75%,Max
+Correctness,1.1,1.0,1.0,1.0,1.0,1.0,2.0
+Fluency,4.6,5.0,4.0,4.0,5.0,5.0,5.0
+Perceived Utility,1.22,1.0,1.0,1.0,1.0,1.0,2.0
+Citation Recall,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Citation Precision,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Preciseness,1.22,1.0,1.0,1.0,1.0,1.0,2.0

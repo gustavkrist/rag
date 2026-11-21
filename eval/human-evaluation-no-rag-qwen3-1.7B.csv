@@ -1,0 +1,618 @@
+query,context,reply,correctness_score
+What is a good strategy for the Solar Pillar?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What is a good strategy for the Solar Pillar?
+assistant
+","A good strategy for the Solar Pillar involves using a weapon like the **Solar Sword** or **Lava Sword** to pierce through its protective shell. Focus on attacking when the pillar is vulnerable, such as when it swings its arms or moves toward you. Avoid direct confrontation with the lava surrounding it; instead, use a shield to deflect heat and protect your character. Position yourself near the pillar’s base and attack while it’s stationary, as it can be weakened by concentrated strikes. Always prioritize timing and environmental awareness to maximize damage and minimize risk.",1.0
+How do I increase my health capacity?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I increase my health capacity?
+assistant
+","In Terraria, health capacity is increased by collecting **Health Potions** in the game's inventory. These potions can be used to craft a **Potion of Health**, which upgrades your Health Bar. The Health Bar itself can be further upgraded by using the Potion of Health, which increases your maximum health. To boost your health, focus on gathering Health Potions and crafting the Potion of Health to maximize your endurance in the game.",1.0
+How do I get more health?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I get more health?
+assistant
+","In Terraria, you can increase your health by using the **Health Potion** (found in the inventory) to quickly restore HP. Alternatively, you can collect **Health Bars** that appear in dangerous areas like the Overworld or Nether, which you can then use to replenish your health. For permanent health boosts, consider upgrading your health armor or using the **Health Potion** regularly. Always carry a Health Potion to stay safe in tough environments.",2.0
+How do I find the mechanic?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I find the mechanic?
+assistant
+","In Terraria, the core mechanics revolve around farming, building, and crafting. The primary mechanic is farming, where you grow crops and gather resources by planting seeds in a ""farming area."" Building involves constructing structures from blocks, while crafting allows you to create tools, weapons, and potions. The game also features a unique system where you can ""farm"" a special area to grow crops faster and collect resources more efficiently. Understanding these mechanics helps you progress and explore the game world effectively.",1.0
+How do I summon Plantera?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I summon Plantera?
+assistant
+","To summon Plantera in Terraria, you must first reach the End dimension by using the End Portal. Once there, locate the Plantera (a large, green plant-like entity) and interact with it. Plantera can be summoned by placing a specific block (like a plant block) near the End Portal or by using the End Portal itself to trigger her appearance. She appears as a boss during the End event, so ensure you're in the correct location and time to summon her.",1.0
+What are the three mechanical bosses?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What are the three mechanical bosses?
+assistant
+","In Terraria, the three mechanical bosses are the **Golem**, **Stone Gozer**, and **Iron Gozer**. These bosses are designed to be fought using specific mechanics, such as using tools to break their armor or exploiting their weaknesses. The Golem is the first and easiest, while the Stone and Iron Gozers are progressively harder, requiring more strategy and resources to defeat.",1.0
+What are the Princess' living preferences?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What are the Princess' living preferences?
+assistant
+","The Princess in Terraria is a guardian of the Castle and loves creating music, art, and decorations. She prefers a peaceful, quiet environment and often enjoys interacting with villagers. She is gentle, kind, and values harmony in her world, though she may be busy with her duties. Her home is the Castle, where she protects the realm and inspires creativity.",1.0
+How do I find the shimmer?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I find the shimmer?
+assistant
+","In Terraria, the shimmer is found in the Shimmering Forest, a unique area in the Overworld. To locate it, travel to the Edge of the World and explore the Shimmering Forest, where the shimmer appears as a glowing crystal or in a structure. Once found, collect it by interacting with it, but be cautious as it's fragile and can be destroyed if stepped on. The shimmer is a rare item that rewards players for exploring its location.",1.0
+What are the modifiers of expert mode?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What are the modifiers of expert mode?
+assistant
+","In Terraria, expert mode features four tiers (Tier 1 to Tier 4), each with increasing modifiers:  
+- **Tier 1** adds basic experience, loot, and difficulty boosts.  
+- **Tier 2** enhances experience and loot drops significantly.  
+- **Tier 3** increases difficulty, speed, and item quality.  
+- **Tier 4** offers the highest modifiers, including faster progression, better loot, and more powerful weapons.  
+These tiers progressively challenge players with stronger mechanics and rewards.",1.0
+How do I start hardmode?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I start hardmode?
+assistant
+","To start hardmode in Terraria, you need to reach level 40, gather a significant amount of resources (wood, stone, food), and build a safe base. Focus on collecting ores like iron, gold, and diamonds, and craft weapons and armor. Avoid using the crafting table until you're ready, and ensure you have enough food to last through the early stages. Hardmode requires preparation, resource management, and careful planning to survive the challenges ahead.",1.0
+How do I progress in the game?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I progress in the game?
+assistant
+","To progress in Terraria, focus on building a base, farming resources like wheat, mushrooms, and coal, and exploring the world to discover new areas and biomes. Complete the game’s main objectives, such as collecting all 12 types of blocks and crafting tools. Upgrade your tools and equipment to streamline farming and construction, and keep exploring to uncover hidden secrets and rare items.",2.0
+What are the summoned events in the game?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What are the summoned events in the game?
+assistant
+","In Terraria, summoned events are special occurrences that happen during the game's story, often triggered by completing specific tasks or defeating bosses. The most iconic events include the **Dragon** (when you complete the Dragon's Lair), the **Wither** (after defeating the Wither), and the **Mobs** (like Golems and Zombies) that appear when you collect certain items. These events are part of the game's narrative and can be collected to unlock new content or rewards. They add depth to the gameplay by introducing unique challenges and story elements.",1.0
+How do I start the lunatic events?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I start the lunatic events?
+assistant
+","To start the Lunatic Events in Terraria, you need to collect at least 10 items in your inventory. Once you have 10 items (any type), the events will begin. These events are triggered when you have 10 or more items, and they occur randomly in the game world. The events are part of the game's progression and can be experienced multiple times with additional items. Ensure you have 10 items in your inventory before starting the events.",1.0
+Which buff potions are good for boss fights?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+Which buff potions are good for boss fights?
+assistant
+","In Terraria, **buff potions** are essential for boss fights, and the best options include:  
+1. **Health Potion** (max health for survival).  
+2. **Mana Potion** (boosts spellcasting power).  
+3. **Strength Potion** (increases attack damage).  
+4. **Speed Potion** (enhances movement and attack speed).  
+5. **Resist Potion** (weakens damage from specific elements).  
+
+These potions provide critical stats or defenses to outlast bosses. For example, the **Fire** or **Ice** potions can counter bosses with elemental weaknesses. Always prioritize the ones most relevant to the boss’s type.",2.0
+How do I create a surface glowing mushroom biome?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I create a surface glowing mushroom biome?
+assistant
+","To create a surface glowing mushroom biome in Terraria, start by placing **glowstone** blocks in the ground to form a base. Then, place **glowing mushrooms** on top of the glowstone in a pattern resembling a forest. Use **glowstone bridges** or **walls** to connect sections of the biome and add depth. Ensure the mushrooms are evenly distributed and the glowstone is evenly spaced to create a vibrant, glowing effect. This biome requires careful placement and structure to mimic a natural surface biome.",1.0
+How do I summon Truffle?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I summon Truffle?
+assistant
+","In Terraria, Truffles can be summoned by using a Truffle Mine, which is obtained by mining Truffles. To summon a Truffle, locate a Truffle Mine (found in the game) and use it to activate the Truffle. Truffles are rare and typically appear in specific areas, so they may require careful exploration to find and summon. Once summoned, Truffles can be ridden or used for other purposes.",1.0
+What is the best strategy for beating the moon lord?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What is the best strategy for beating the moon lord?
+assistant
+","The best strategy for defeating the Moon Lord in Terraria involves preparing a high amount of food (1000+ units) to sustain your health during the long battle. Use a high-level weapon like a pickaxe or sword for efficient damage, and carry enough tools (e.g., torches, shovels) to handle the Moon Lord's attacks. Avoid the Moon Lord's projectiles by staying in safe zones and using food to regenerate health. Focus on maintaining your stamina and exploiting the Moon Lord's weakness to food to maximize damage.",1.0
+What is the Old One's Army?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What is the Old One's Army?
+assistant
+","The Old One's Army is a group of enemies in Terraria, led by the Old One, a massive, ancient entity. They appear in the Drowned biome and are part of the Old One's faction, which seeks to conquer the world. The army includes creatures like the Drowned, Golems, and other bosses, and they pose a significant threat to players. Defeating them requires careful strategy and strength, as they are often found in challenging areas of the game.",1.0
+How do I unlock the town bunny?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I unlock the town bunny?
+assistant
+","To unlock the town bunny in Terraria, build a house in the town area. Once the house is constructed, the bunny will appear in the town. However, the bunny may only appear after completing specific quests or reaching certain milestones in the game. Ensure you have a house built and the town is active to access the bunny.",2.0
+What is the final objective?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What is the final objective?
+assistant
+","The final objective in Terraria is to defeat the ancient being that controls the world's core, saving the planet from destruction. Players must complete the game's story, collect essential items, and overcome challenges in the final levels. The game concludes when the player successfully defeats this boss, allowing them to experience the final world and enjoy the ending.",1.0
+Which biomes appear in hardmode?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+Which biomes appear in hardmode?
+assistant
+","In Hardmode of Terraria, the main biomes include **Forest**, **Desert**, **Mountain**, **Ocean**, and **Magma**. Additionally, the **Overgrown Forest** (a variant of the Forest biome) and the **End** dimension (with its own biome, **Magma**) are present. The Ocean is particularly prominent, especially in the End, where it hosts dangerous mobs and bosses.",2.0
+What are the available difficulty modes?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What are the available difficulty modes?
+assistant
+","In Terraria, the available difficulty modes are **Normal**, **Hard**, and **Hardcore**. **Normal** is the default setting with standard challenges, **Hard** increases difficulty with more enemies and hazards, and **Hardcore** removes health, items, and other resources for an even tougher experience. Some versions may include a **Super** or **Ultra** mode, but these are less common and vary by platform.",1.0
+What are some tips for fighting Skeletron Prime?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What are some tips for fighting Skeletron Prime?
+assistant
+","To defeat Skeletron Prime in Terraria, use a high-damage weapon like the Sledgehammer or a weapon with high durability to deal with his massive health. Utilize the environment by positioning yourself near walls or using terrain to block his attacks, creating a safe zone. Attack him in a timed sequence, focusing on his vulnerable spots while using a shield to block his powerful strikes. Prioritize dealing damage quickly to reduce his health efficiently.",1.0
+How do I get more speed?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I get more speed?
+assistant
+","In Terraria, you can increase your speed by using the **Speed Mod** or the **Speed Boost** item. The Speed Mod allows you to use the Speed Boost item to speed up your movement, while the Speed Boost item itself can be used to enhance your speed during gameplay. Additionally, using the Speed Boost item in the game directly boosts your movement speed, making it easier to navigate large areas or chase enemies. For optimal speed, combine these methods with efficient resource management and timing.",1.0
+Can I fight the Eater of Worlds in a crimson world?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+Can I fight the Eater of Worlds in a crimson world?
+assistant
+","The Eater of Worlds is a boss exclusive to the End dimension in Terraria. A crimson world is a distinct dimension (often a modified or custom world) and does not contain the Eater of Worlds. Therefore, you cannot fight it in a crimson world. The Eater of Worlds is only present in the End dimension, where it resides in the End City.",1.0
+How do I get shadow scales?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I get shadow scales?
+assistant
+","In Terraria, shadow scales are found in the Shadowlands, a new region accessible by traveling to the Nether and then exploring the Shadowlands area. To obtain them, you'll need to defeat shadow creatures or complete specific quests in this region. The scales are typically found in a cave or near a shadow creature, and they can be collected once you reach the correct location. Ensure you have the appropriate gear to explore the Shadowlands.",
+"When fighting the Eater of Worlds, should I focus the heads and tails or body segments?","system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+When fighting the Eater of Worlds, should I focus the heads and tails or body segments?
+assistant
+","When fighting the Eater of Worlds, focus on the **head and tail** of each segment rather than the body. The segments are vulnerable to attacks on their heads and tails, which will break them apart. Targeting these parts ensures faster defeat, while focusing on the body segments alone may not be as effective. Use a combination of attacks and precise timing to maximize damage.",
+What is the most health I can get?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What is the most health I can get?
+assistant
+","In Terraria, the maximum health you can achieve is **100** points, which is capped by the game's design. This limit is determined by your level and the items you collect, but you can increase your health through Health potions, Health bars, and certain tools. However, some mods or custom content may allow for higher health values, so always check for updates or modifications. Always prioritize health to survive in the game!",
+What happens when I defeat all four celestial pillars?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What happens when I defeat all four celestial pillars?
+assistant
+","In Terraria's mod version, defeating all four celestial pillars unlocks the End, a boss fight where you must defeat the End boss to conclude the game. The End is a challenging encounter requiring specific items and strategies, and victory leads to a final screen displaying your achievements. The mod often includes unique endings based on your gameplay, such as a ""Climax"" or ""Victory"" screen.",
+How can I summon the Moon Lord?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How can I summon the Moon Lord?
+assistant
+","To summon the Moon Lord in Terraria, you need to collect **10 Moon Crystals** from the Moonlands. Once you have them, go to the Moonlands area and use the crystals in a **Moonlit Ritual** (typically at night). This will trigger the summoning of the Moon Lord, a challenging boss that requires skill and strategy to defeat. The Moon Lord can only be summoned once, so make sure to do it when you're ready!",
+How do I summon Duke Fishron?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I summon Duke Fishron?
+assistant
+","To summon Duke Fishron in Terraria, you need to collect a Fossil of the Ancients from the Fossilized Forest. Once you have it, use it in the game by interacting with it in the Overworld or in a crafting station. The summoning requires a specific event to trigger, and it's a rare boss that can only be summoned once per day. Ensure you have enough stamina and are in the right location to initiate the summon.",
+Is the Hallow only available in hardmode?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+Is the Hallow only available in hardmode?
+assistant
+","The Hallow is available in both Normal and Hardmode, but it becomes significantly more challenging in Hardmode with stronger bosses and tougher enemies. While it's a core biome in the base game, its difficulty increases in Hardmode, making it a key area for players seeking greater challenges.",
+How big is the world?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How big is the world?
+assistant
+","The Terraria world is incredibly vast, with the Overworld spanning millions of blocks and featuring diverse biomes, mountains, and oceans. The Nether and End dimensions add even more expansive regions, including the Nether's endless plains and the End's complex, surreal landscapes. While the game doesn't provide exact measurements, the Overworld's scale is described as ""infinite"" in terms of exploration, allowing players to discover new areas and structures as they progress.",
+Where do I find the Angler?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+Where do I find the Angler?
+assistant
+","In Terraria, the Angler is a boss located in the **Luminous Forest** of the **Luminous Realm**. To find it, players must navigate to this area, which is accessible after completing the Luminous Realm questline. The Angler is a challenging boss that requires careful strategy to defeat.",
+How do I get a pet slime for my town?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I get a pet slime for my town?
+assistant
+","To get a pet slime in Terraria, complete the ""Slime Quest"" by defeating slimes in the Slime Caves. After defeating them, you'll receive the pet slime as a reward. This event is exclusive to the Slime Caves and occurs once per player. Ensure you have enough resources and patience to complete the quest.",
+What classes can I play as?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What classes can I play as?
+assistant
+","In Terraria, you can play as one of four primary classes: **Warrior**, **Mage**, **Rogue**, or **Priest**. Each class has unique abilities and playstyles:  
+- **Warrior** is a melee tank with high health and melee attacks.  
+- **Mage** specializes in ranged magic and spellcasting.  
+- **Rogue** focuses on stealth, speed, and weapon mastery.  
+- **Priest** is a healer with magic and support abilities.  
+Additional classes like **Archer** and **Hunter** exist for specialized roles. Choose based on your preferred playstyle!",
+How do I purify the corruption?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I purify the corruption?
+assistant
+","In Terraria, corruption can be purified by placing a **purification crystal** in a structure (like a house or shrine) that is affected by corruption. The crystal must be placed in a specific location, often in a room with a **corruption level** of 5 or higher. Once activated, the crystal will gradually purify the corruption, restoring the structure and its contents. This process requires patience, as the purification takes time and the corruption level must be managed carefully. Always ensure the crystal is placed in a safe, non-attackable area to avoid triggering additional hazards.",
+Why do I get killed by a big skull when I enter the dungeon?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+Why do I get killed by a big skull when I enter the dungeon?
+assistant
+","In Terraria, the big skull is a boss that appears in the dungeon. If you enter the dungeon without defeating it, you may be killed by it, as the game's mechanics require completing specific quests or defeating other enemies to access the big skull. The exact reason for this behavior depends on the game's design, but it often relates to the dungeon's structure and the conditions needed to proceed. Always ensure you've completed the required tasks before entering the dungeon to avoid being killed by the big skull.",
+What is a good way to farm money?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What is a good way to farm money?
+assistant
+","In Terraria, a good way to farm money is to focus on high-value resources like wheat, fish, and rare materials. Wheat can be sold for 100-200 gold per crop, while fishing with a fishing rod yields 50-100 gold per catch. Combine these with trading or selling crafted items (e.g., potions, tools) to maximize earnings. Use the money to purchase better tools, materials, or upgrades to enhance your gameplay efficiency.",
+What is the highest you can jump?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What is the highest you can jump?
+assistant
+","In Terraria, the highest jump is limited by the terrain and the player's ability to reach the top of the world. The game doesn't have a fixed maximum jump height, but players can jump as high as they can, constrained by the elevation of the ground they're on. The top of the world is the highest point, but jumping from there isn't possible because it's the edge of the game. The actual maximum jump height depends on the player's skill and the environment they're in.",
+What does expert mode change?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What does expert mode change?
+assistant
+","In Terraria, Expert Mode increases the game's difficulty by making levels harder, with more enemies, faster-paced gameplay, and tougher bosses. It also enhances the difficulty of collecting items, managing resources, and navigating the terrain. The game's mechanics, such as enemy behavior and boss challenges, are adjusted to reflect the higher difficulty level.",
+What happens if I die on a hardcore character?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What happens if I die on a hardcore character?
+assistant
+","In Terraria's Hardcore mode, dying resets the game, so all your progress, including your character's stats and any items you've collected, is lost. If you die on a Hardcore character (a special entity that can't be saved), you lose that character as well, and the game restarts from the beginning. No saves are possible, so you'll have to start over entirely.",
+Can I swim in lava?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+Can I swim in lava?
+assistant
+","In Terraria, you cannot swim in lava because it is a dangerous, hot environment that can instantly damage or kill you. The game's design prevents players from interacting with lava, as it is a hostile element that poses significant risks. Instead, players are encouraged to explore safe areas and avoid lava sources to survive.",
+Will I drown in water?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+Will I drown in water?
+assistant
+","In Terraria, you won't drown in water because the game doesn't include a drowning mechanic. Water is safe to swim in, and players can move freely through water-filled areas. However, if you're in a water-filled space without a boat, you might get stuck, but this is unrelated to drowning. Always keep a boat or use a raft to avoid getting stuck in water!",
+How does a solar eclipse happen?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How does a solar eclipse happen?
+assistant
+","A solar eclipse occurs when the Moon passes between the Earth and the Sun, aligning in a straight line (called a ""solar eclipse"" or ""total eclipse"" if the Moon fully blocks the Sun). The Moon's orbit is tilted slightly relative to Earth's orbit, so eclipses happen only during specific alignments (called ""eclipse months""). The type of eclipse (total, partial, or annular) depends on the Moon's distance from Earth and its position in its orbit. Total eclipses are rare and visible from Earth when the Moon is at its closest point to Earth (perigee), while annular eclipses occur when the Moon is farther away (apogee).",
+What is a good strategy for avoiding the death ray from the Moon Lord’s eye?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What is a good strategy for avoiding the death ray from the Moon Lord’s eye?
+assistant
+","To avoid the Moon Lord’s eye death ray in Terraria, use a **shield** (like the Shield of the Moon) to block the beam’s path. Stay in a **safe zone** (e.g., behind a wall or using a shield) to avoid direct exposure. Dodge the beam by moving quickly and timing your movements to avoid the attack’s range. Always prioritize **shielding** and **positioning** to minimize damage while navigating the boss’s aggressive attacks.",
+How do I become immune to being confused?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I become immune to being confused?
+assistant
+","In Terraria, to become immune to being confused, you need to obtain the **Confusion Immunity** item, which is a rare item found in the Nether Wastes. Once you have it, you can equip it in your inventory to bypass the confusion effect. Alternatively, you can use the item to protect yourself during specific activities, like farming or exploring. This item is essential for surviving encounters with confusing enemies or bosses.",
+How do I become immune to confusion?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How do I become immune to confusion?
+assistant
+","In Terraria, you can become immune to confusion by learning the **Immunization** ability. This skill is unlocked by completing the ""Immunization"" quest, which requires defeating the boss *Mimic* in the *Mimic's Den*. Once acquired, it grants resistance to confusion and other effects. Alternatively, using **Potion of Immunity** (crafted with a *Mimic's Heart*) provides temporary immunity but is not permanent. The **Immunization** ability is the most reliable long-term solution.",
+How much damage does bleeding do?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+How much damage does bleeding do?
+assistant
+","In Terraria, bleeding damage varies by weapon: the Scythe deals 10 damage per hit, the Sword deals 5, and other weapons may have different values. Bleeding is a continuous damage effect, so the total damage depends on the number of hits and the duration of the effect. Always check the specific weapon's damage stat for precise values.",
+What is the formula for the mana sickness damage reduction?,"system
+## Role
+You are an expert assistant for the video game Terraria.
+
+## Instructions
+- Give a helpful answer to the user query.
+- Give a clear answer in 3 to 5 sentences.
+
+## Question
+What is the formula for the mana sickness damage reduction?
+assistant
+",The formula for mana sickness damage reduction in Terraria is: **Damage = BaseDamage × (1 - (PlayerMana / ManaSicknessDamage))**. This calculates the reduced damage by subtracting the proportion of your mana relative to the mana sickness damage dealt.,

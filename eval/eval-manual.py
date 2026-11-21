@@ -8,12 +8,13 @@ from rich.markdown import Markdown
 FILE_DIR = os.path.dirname(__file__)
 
 
-def main() -> None:
-    model = "qwen3-1.7B"
-    samples = pd.read_csv(os.path.join(FILE_DIR, f"sample-generations-{model}.csv"))
+def get_correctness_scores(samples: pd.DataFrame) -> list[float]:
     correctness_scores = []
     done = False
     for reply in samples["reply"]:
+        if reply == "I do not know how to respond to your question.":
+            correctness_scores.append(math.nan)
+            continue
         if done:
             break
         print("\n\n\n\n\n\n\n\n\n\n")
@@ -48,9 +49,24 @@ def main() -> None:
         correctness_scores.append(score)
     while len(correctness_scores) < len(samples):
         correctness_scores.append(math.nan)
+    return correctness_scores
+
+
+
+def main() -> None:
+    model = "qwen3-1.7B"
+
+    # Get evaluation for RAG model answers
+    samples = pd.read_csv(os.path.join(FILE_DIR, f"sample-generations-{model}.csv"))
     df = samples.copy()
-    df["correctness_score"] = correctness_scores
+    df["correctness_score"] = get_correctness_scores(samples)
     df.to_csv(os.path.join(FILE_DIR, f"human-evaluation-{model}.csv"), index=False)
+
+    # Get evaluation for base model answers
+    samples = pd.read_csv(os.path.join(FILE_DIR, f"sample-generations-no-rag-{model}.csv"))
+    df = samples.copy()
+    df["correctness_score"] = get_correctness_scores(samples)
+    df.to_csv(os.path.join(FILE_DIR, f"human-evaluation-no-rag-{model}.csv"), index=False)
 
 
 if __name__ == "__main__":

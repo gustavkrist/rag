@@ -51,3 +51,5 @@
       for the RAG model for each sample question from the LLM judge
   - [`./eval/eval-statistics-table-qwen3-1.7B.csv`](./eval/eval-statistics-table-qwen3-1.7B.csv)
     - Contains summary statistics for the human and model-assisted scores
+  - [`./eval/eval-comparison-table-qwen3-1.7B.csv`](./eval/eval-comparison-table-qwen3-1.7B.csv)
+- And all the same files for the base model without rag, with `-no-rag` in the name

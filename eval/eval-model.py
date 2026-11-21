@@ -10,7 +10,8 @@ from tqdm.contrib.concurrent import thread_map
 FILE_DIR = os.path.dirname(__file__)
 
 # Inspired by https://github.com/trevorandersen/CP5403-pracs/blob/414dfbd74c86550b5292b967ca17d3086490ddcb/week08/cp5403-prac-08.ipynb
-JUDGE_PROMPT = """You are evaluating a question-answering system.
+JUDGE_PROMPT = """\
+You are evaluating a question-answering system.
 
 Question: {query}
 
@@ -24,6 +25,7 @@ Fluency: Is the generated text fluent and cohesive?
 Perceived utility: Is the answer helpful and informative?
 Citation recall: Proportion of generated statements about the external world that are fully supported by their citations
 Citation precision: Proportion of generated citations that support their associated statements
+Preciseness: How precisely does the generated reply answer the question?
 
 Reply with the score and one sentence of justification for each"""
 
@@ -37,6 +39,8 @@ class JudgeResponse(BaseModel):
     citation_recall_justification: str
     citation_precision_score: Annotated[int, Field(ge=1, le=5)]
     citation_precision_justification: str
+    preciseness_score: Annotated[int, Field(ge=1, le=5)]
+    preciseness_justification: str
 
 
 def judge_response(response_tuple: tuple[str, str, str]) -> JudgeResponse | None:
@@ -52,12 +56,14 @@ def judge_response(response_tuple: tuple[str, str, str]) -> JudgeResponse | None
     return response.output_parsed
 
 
-def main() -> None:
-    model = "qwen3-1.7B"
-    samples = pd.read_csv(
-        os.path.join(FILE_DIR, f"sample-generations-{model}.csv")
-    )
-    pillars = ["fluency", "perceived_utility", "citation_recall", "citation_precision"]
+def get_and_save_scores(samples: pd.DataFrame, filename: str) -> None:
+    pillars = [
+        "fluency",
+        "perceived_utility",
+        "citation_recall",
+        "citation_precision",
+        "preciseness",
+    ]
     judge_scores = {p: [] for p in pillars}
     judge_justifications = {p: [] for p in pillars}
     rows = [(q, c, r) for _, (q, c, r) in samples.iterrows()]
@@ -72,8 +78,20 @@ def main() -> None:
     for p in pillars:
         df[f"{p}_score"] = judge_scores[p]
         df[f"{p}_justification"] = judge_justifications[p]
-    df.to_csv(
-        os.path.join(FILE_DIR, f"judge-evaluation-{model}.csv"), index=False
+    df.to_csv(filename, index=False)
+
+
+def main() -> None:
+    model = "qwen3-1.7B"
+    samples = pd.read_csv(os.path.join(FILE_DIR, f"sample-generations-{model}.csv"))
+    get_and_save_scores(
+        samples, os.path.join(FILE_DIR, f"judge-evaluation-{model}.csv")
+    )
+    samples = pd.read_csv(
+        os.path.join(FILE_DIR, f"sample-generations-no-rag-{model}.csv")
+    )
+    get_and_save_scores(
+        samples, os.path.join(FILE_DIR, f"judge-evaluation-no-rag-{model}.csv")
     )
 
 

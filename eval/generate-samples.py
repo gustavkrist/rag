@@ -9,20 +9,16 @@ from rag.llm import RagLLM
 FILE_DIR = os.path.dirname(__file__)
 
 
-def main() -> None:
-    data_dir = os.path.join(os.path.dirname(FILE_DIR), "data")
-    db = DocumentStore(os.path.join(data_dir, "articles.json"))
-    llm = RagLLM(db)
-    with open(os.path.join(FILE_DIR, "sample-questions.txt")) as f:
-        queries = [line.strip() for line in f]
-
+def generate_and_save_answers(
+    llm: RagLLM, queries: list[str], filename: str, rag: bool
+) -> None:
     sample_generations = {
         "query": [],
         "context": [],
         "reply": [],
     }
     for query in tqdm(queries):
-        messages, _documents = llm._get_context(query)
+        messages, _documents = llm._get_context(query, use_rag=rag)
         if messages:
             reply, inputs = llm._generate_reply(messages, return_inputs=True)
             context = llm.tokenizer.decode(
@@ -37,9 +33,28 @@ def main() -> None:
         sample_generations["query"].append(query)
         sample_generations["context"].append(context)
         sample_generations["reply"].append(reply)
+
     pd.DataFrame(sample_generations).to_csv(
-        os.path.join(FILE_DIR, "sample-generations.csv"),
+        filename,
         index=False,
+    )
+
+
+def main() -> None:
+    model = "qwen3-1.7B"
+    data_dir = os.path.join(os.path.dirname(FILE_DIR), "data")
+    db = DocumentStore(os.path.join(data_dir, "articles.json"))
+    llm = RagLLM(db)
+    with open(os.path.join(FILE_DIR, "sample-questions.txt")) as f:
+        queries = [line.strip() for line in f]
+    generate_and_save_answers(
+        llm, queries, os.path.join(FILE_DIR, f"sample-generations-{model}.csv"), True
+    )
+    generate_and_save_answers(
+        llm,
+        queries,
+        os.path.join(FILE_DIR, f"sample-generations-no-rag-{model}.csv"),
+        False,
     )
 
 
