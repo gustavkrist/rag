@@ -29,7 +29,7 @@ This project aims to lessen the friction caused by needing to refer to the wiki.
 
 == Data Origin and Extraction
 
-The data for the RAG model was sourced from the Terraria wiki (#cite(label("noauthor_terraria_2026"), form: "full")). The data was fetched from the articles on the wiki using `pywikibot`. `pywikibot` can extract data clean text data from MediaWiki sites @noauthor_manualpywikibot_2026, which includes the Terraria wiki. The actual script for data extraction is available in the repository as `fetch_data.py`. The script limits the extraction to articles from the following categories on the wiki:
+The data for the RAG model was sourced from the Terraria wiki (#cite(label("noauthor_terraria_2026"), form: "full")). The data was fetched from the articles on the wiki using `pywikibot`, the script is available in the GitHub repository as `fetch_data.py`. `pywikibot` can extract data clean text data from MediaWiki sites @noauthor_manualpywikibot_2026, which includes the Terraria wiki. The actual script for data extraction is available in the repository as `fetch_data.py`. The script limits the extraction to articles from the following categories on the wiki:
 
 - Boss NPCs
 - Environments
