@@ -8,8 +8,6 @@
 - Install [`uv`](https://docs.astral.sh/uv/)
 - Run `uv sync`
 - Activate the venv - `source .venv/bin/activate` on Linux/MacOS
-- Run the data fetch script - `python3 fetch_data.py`
-  - This takes a while, and it will possibly back off a few times while fetching due to rate limits
 
 > [!note]
 > The first run of the app or evaluation suite will take a while as the data is processed and the vectorized database has to be built
@@ -53,3 +51,9 @@
     - Contains summary statistics for the human and model-assisted scores
   - [`./eval/eval-comparison-table-qwen3-1.7B.csv`](./eval/eval-comparison-table-qwen3-1.7B.csv)
 - And all the same files for the base model without rag, with `-no-rag` in the name
+
+# Legal Notices
+
+The data found in [`data/articles.json`](./data/articles.json) is created by the official Terraria Wiki ([https://terraria.wiki.gg/](https://terraria.wiki.gg/)) and licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 License](https://creativecommons.org/licenses/by-nc-sa/4.0).
+
+Terraria content and materials are the intellectual property of [Re-Logic](https://re-logic.com/).

@@ -128,9 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Datasets
-data/
-
 # Compressed files
 *.7z
 *.dmg
